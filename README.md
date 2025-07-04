@@ -7,16 +7,6 @@
 - Implement Google Auth using BaaS Firebase Auth and store all users' information in Firestore DB
 - Live preview on [Vercel's Hosting](https://cinehouse.vercel.app/).
 
-## Live Demo
-
-### On Browser
-
-![Gif preview of the Cinehouse](./assets/cinehouse-preview-desktop.gif)
-
-### On Mobile
-
-![Gif preview of the Cinehouse on mobile](./assets/cinehouse-preview-mobile.gif)
-
 ## Getting Started
 
 ### Installing and running
