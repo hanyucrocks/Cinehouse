@@ -41,9 +41,9 @@ export const Footer = () => {
           </ul>
         </nav>
         <p className="text-sh-grey pb-3 text-xs">
-          © Clonnerboxd Limited. Made by{" "}
-          <a className="underline" href="https://github.com/JanaIsCoding">
-            JanaIsCoding
+          © Cinehouse Limited. Made by{" "}
+          <a className="underline" href="https://github.com/hanyucrocks">
+            hanyuc
           </a>
           . Film data from{" "}
           <a className="underline" href="https://www.themoviedb.org/">

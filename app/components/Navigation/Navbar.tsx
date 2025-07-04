@@ -103,7 +103,7 @@ const Navbar = ({ userName, profilePic, isLoggedIn, isTransparentNav }) => {
             width={200}
             height={25}
             className="hidden md:block"
-            alt="clonnerboxd browser logo"
+            alt="cinehouse browser logo"
           />
         </Link>
         <div className="flex items-center">

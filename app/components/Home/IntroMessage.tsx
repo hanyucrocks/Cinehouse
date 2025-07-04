@@ -18,7 +18,7 @@ export const IntroMessage = ({ user }: { user: any }) => {
         </span>
       </div>
       <p className="text-h-grey mb-8 text-center text-lg md:mb-8">
-        On Clonnerboxd you can...{" "}
+        On Cinehouse you can...{" "}
         <Link
           href={"/profile/" + user.uid}
           className="text-p-white hover:text-hov-blue"
