@@ -1,21 +1,29 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "app/firebase/firebase";
-import { ProfileBio } from "app/components/Profile/ProfileBio";
+
 import { LayoutNavbar } from "app/components/Navigation/LayoutNavbar";
-import { ProfileMoviesHighlight } from "app/components/Profile/ProfileMoviesHighlight";
-import { ProfileReviews } from "app/components/Profile/ProfileReviews";
-import { User, UserFavourite, UserReview, UserWatched } from "app/types";
 import { Footer } from "app/components/Navigation/Footer";
 
-export default function Page({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
+import { ProfileBio } from "app/components/Profile/ProfileBio";
+import { ProfileMoviesHighlight } from "app/components/Profile/ProfileMoviesHighlight";
+import { ProfileReviews } from "app/components/Profile/ProfileReviews";
 
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User>({} as User);
+import {
+  User,
+  UserFavourite,
+  UserReview,
+  UserWatched,
+} from "app/types";
+
+export default function Page({ params }: { params: { id: string } }) {
+  const { id } = params;
+
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User | null>(null);
   const [isAuthor, setIsAuthor] = useState(false);
 
   const [reviews, setReviews] = useState<UserReview[]>([]);
@@ -24,53 +32,92 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
   const router = useRouter();
 
+  // Fetch profile data
   const initProfilePage = async () => {
-    setLoading(true);
+    try {
+      setLoading(true);
 
-    const userSnap = await getDoc(doc(db, "users", id));
-    if (userSnap.exists()) {
-      const user = userSnap.data() as User;
-      setUser(user);
+      const userSnap = await getDoc(doc(db, "users", id));
 
-      setReviews(user.reviews.reverse().slice(0, 6));
-      setWatched(user.watched);
-      setFavourites(user.favourites);
+      if (!userSnap.exists()) {
+        setUser(null);
+        return;
+      }
+
+      const userData = userSnap.data() as User;
+      setUser(userData);
+
+      setReviews(
+        (userData.reviews ?? []).slice().reverse().slice(0, 6)
+      );
+      setWatched(userData.watched ?? []);
+      setFavourites(userData.favourites ?? []);
+    } catch (error) {
+      console.error("Error loading profile:", error);
+      setUser(null);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
-  const setMovies = async () => {
+  // Refresh movies after profile events
+  const refreshMovies = async () => {
     const userSnap = await getDoc(doc(db, "users", id));
-    if (userSnap.exists()) {
-      const user = userSnap.data() as User;
+    if (!userSnap.exists()) return;
 
-      setWatched(user.watched);
-      setFavourites(user.favourites);
-    }
+    const userData = userSnap.data() as User;
+    setWatched(userData.watched ?? []);
+    setFavourites(userData.favourites ?? []);
   };
 
   const onEvent = () => {
-    setMovies();
+    refreshMovies();
   };
 
   useEffect(() => {
     initProfilePage();
-  }, [id, router]);
+  }, [id]);
 
+  // Determine author AFTER profile loads
   useEffect(() => {
+    if (!user) return;
     setIsAuthor(auth.currentUser?.uid === user.uid);
-  }, [auth.currentUser, user]);
+  }, [user]);
 
-  if (loading) return <p>Loading...</p>;
-  if (!loading && !user) return <p>Error loading user.</p>;
+  // ----- RENDER STATES -----
+
+  if (loading) {
+    return (
+      <>
+        <LayoutNavbar />
+        <div className="min-h-[78vh] flex items-center justify-center text-white">
+          Loading profile…
+        </div>
+        <Footer />
+      </>
+    );
+  }
+
+  if (!user) {
+    return (
+      <>
+        <LayoutNavbar />
+        <div className="min-h-[78vh] flex items-center justify-center text-white">
+          User not found.
+        </div>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
       <LayoutNavbar />
+
       <div className="site-body min-h-[78vh] py-5">
-        <div className="flex flex-col px-4 font-['Graphik'] md:mx-auto md:my-0 md:w-[950px] md:py-8">
+        <div className="flex flex-col px-4 font-['Graphik'] md:mx-auto md:w-[950px] md:py-8">
           <ProfileBio user={user} isAuthor={isAuthor} />
+
           <div className="flex flex-col gap-4 md:flex-row md:justify-between">
             <div>
               <ProfileMoviesHighlight
@@ -92,7 +139,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
               />
             </div>
 
-            {user.reviews && <ProfileReviews reviews={reviews} />}
+            <ProfileReviews reviews={reviews} />
           </div>
         </div>
       </div>
