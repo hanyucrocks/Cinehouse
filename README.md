@@ -11,11 +11,11 @@
 
 ### On Browser
 
-![Gif preview of the Cinehouse](./assets/Cinehouse-preview-desktop.gif)
+![Gif preview of the Cinehouse](./assets/cinehouse-preview-desktop.gif)
 
 ### On Mobile
 
-![Gif preview of the Cinehouse on mobile](./assets/Cinehouse-mobile-preview.gif)
+![Gif preview of the Cinehouse on mobile](./assets/cinehouse-mobile-preview.gif)
 
 ## Getting Started
 
