@@ -129,7 +129,7 @@ export default function Page() {
       <div className="site-body pt-5">
         <div className="flex min-h-[80vh] flex-col px-4 font-['Graphik'] md:mx-auto md:my-0 md:w-[950px]">
           <div className="border-b-grey text-sh-grey mb-3 flex justify-between border-b border-solid text-sm">
-            <p>REVIEWS OF CLONNERBOXD</p>
+            <p>REVIEWS OF Cinehouse</p>
 
             {isLoading && <p className="text-sh-grey text-base">Loading...</p>}
             {!isLoading && (

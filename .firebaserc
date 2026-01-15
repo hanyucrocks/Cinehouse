@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "clonnerboxd",
-    "starting": "clonnerboxd"
+    "default": "Cinehouse",
+    "starting": "Cinehouse"
   },
   "targets": {},
   "etags": {}

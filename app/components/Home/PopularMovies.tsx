@@ -10,7 +10,7 @@ export const PopularMovies = ({ movies }: { movies: any }) => {
     <>
       <div className="section-heading border-b-grey text-sh-grey mb-3 flex justify-between border-b border-solid text-xs">
         <p className="hover:text-hov-blue text-sm hover:cursor-pointer">
-          POPULAR ON CLONNERBOXD
+          POPULAR ON Cinehouse
         </p>{" "}
         {!path.includes("films") && (
           <Link
