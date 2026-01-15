@@ -27,10 +27,5 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 // Client-only analytics (optional, safe)
-if (typeof window !== "undefined") {
-  import("firebase/analytics").then(({ getAnalytics }) => {
-    getAnalytics(app);
-  });
-}
 
 export default app;
