@@ -5,7 +5,7 @@
 - Fully responsive clone of a popular social movie tracking and reviewing platform
 - Search, save and review your favourite movies, fetched from The Movie Database ’s API
 - Implement Google Auth using BaaS Firebase Auth and store all users' information in Firestore DB
-- Live preview on [Vercel's Hosting](https://Cinehouse.vercel.app/).
+- Live preview on [Vercel's Hosting](https://cinehouse-psi.vercel.app/).
 
 ## Live Demo
 
@@ -22,7 +22,7 @@
 ### Installing and running
 
 ```
-git clone https://github.com/janaiscoding/letterboxd-clone.git
+git clone https://github.com/hanyucrocks/Cinehouse.git
 cd letterboxd-clone
 npm install
 ```
