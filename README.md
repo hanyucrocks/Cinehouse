@@ -1,8 +1,8 @@
-# Cinehouse - Letterboxd Clone
+# Cinehouse - A Movie Tracking App with TMDB API
 
 ## Project's Scope
 
-- Fully responsive clone of a popular social movie tracking and reviewing platform
+- Fully responsive website of a popular social movie tracking and reviewing platform
 - Search, save and review your favourite movies, fetched from The Movie Database ’s API
 - Implement Google Auth using BaaS Firebase Auth and store all users' information in Firestore DB
 - Live preview on [Vercel's Hosting](https://Cinehouse.vercel.app/).
