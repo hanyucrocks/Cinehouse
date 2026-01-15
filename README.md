@@ -23,7 +23,7 @@
 
 ```
 git clone https://github.com/hanyucrocks/Cinehouse.git
-cd letterboxd-clone
+cd Cinehouse
 npm install
 ```
 
@@ -73,8 +73,3 @@ npm run dev
 - npm package manager
 - Linux Terminal
 - Git and Github
-
-## Sources, Materials, Copyright
-
-- This is a [Letterboxd](https://letterboxd.com/) website replica
-- API used: [The Movie Database](https://www.themoviedb.org/)
