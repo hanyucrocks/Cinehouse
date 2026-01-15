@@ -19,7 +19,7 @@ import {
   UserWatched,
 } from "app/types";
 
-export default function Page({ params }: { params: { id: string } }) {
+export default function Page({ params }: any) {
   const { id } = params;
 
   const [loading, setLoading] = useState(true);
